@@ -1,0 +1,480 @@
+/* ═══════════════════════════════════════════════════════════════
+   CV.css — Calvin Sonzogni
+   Thème : Campagne · Palette Nude
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ─── PALETTE ──────────────────────────────────────────────────── */
+:root {
+  --parch:  #f5f0e8;   /* parchemin chaud     */
+  --sand:   #e8dfc9;   /* sable sec           */
+  --wheat:  #d4c5a0;   /* blé mûr             */
+  --clay:   #b8a882;   /* argile              */
+  --bark:   #7d6b52;   /* écorce              */
+  --earth:  #4a3d2a;   /* terre foncée        */
+  --ink:    #2c2318;   /* encre sépia         */
+  --olive:  #8b8c5a;   /* olive               */
+  --sage:   #a4a87a;   /* sauge               */
+  --rust:   #a0614a;   /* rouille terracotta  */
+
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body:    'Jost', sans-serif;
+}
+
+/* ─── RESET ─────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* ─── BODY ──────────────────────────────────────────────────────── */
+body {
+  background: var(--sand);
+  font-family: var(--font-body);
+  color: var(--ink);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 3rem 1.5rem 5rem;
+}
+
+/* texture grain papier */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+  opacity: .5;
+}
+
+/* ─── PAGE CARD ─────────────────────────────────────────────────── */
+.page {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 860px;
+  background: var(--parch);
+  border: 1px solid var(--wheat);
+  box-shadow:
+    0 8px 60px rgba(44, 35, 24, .12),
+    0 2px 12px rgba(44, 35, 24, .07);
+}
+
+/* ─── EN-TÊTE ───────────────────────────────────────────────────── */
+.header {
+  background: var(--earth);
+  padding: 2.6rem 3.2rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+/* liseré dégradé bas de header */
+.header::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    var(--olive),
+    var(--wheat),
+    var(--rust),
+    var(--wheat),
+    var(--olive)
+  );
+}
+
+/* branche d'olivier coin haut-droit */
+.header-corner {
+  position: absolute;
+  top: 1.2rem;
+  right: 2rem;
+  opacity: .18;
+}
+
+.header-title {
+  font-family: var(--font-body);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .28em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.header-name {
+  font-family: var(--font-display);
+  font-size: 3.4rem;
+  font-weight: 300;
+  letter-spacing: .06em;
+  color: var(--parch);
+  line-height: 1.05;
+  margin-top: .4rem;
+}
+
+.header-name span {
+  font-weight: 600;
+  color: var(--wheat);
+}
+
+/* ─── CONTACTS ──────────────────────────────────────────────────── */
+.header-contacts {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem 2rem;
+  margin-top: 1.4rem;
+}
+
+.header-contacts a,
+.header-contacts span {
+  font-size: .78rem;
+  letter-spacing: .08em;
+  color: var(--sand);
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: .4rem;
+  transition: color .2s;
+}
+
+.header-contacts a:hover {
+  color: var(--wheat);
+}
+
+.contact-icon {
+  width: 14px;
+  height: 14px;
+  stroke: var(--clay);
+  fill: none;
+  stroke-width: 1.6;
+  flex-shrink: 0;
+}
+
+/* ─── FRISE TIGES DE BLÉ ───────────────────────────────────────── */
+.deco-strip {
+  background: var(--earth);
+  padding: .6rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.deco-strip svg {
+  display: block;
+  width: 100%;
+}
+
+/* ─── GRILLE PRINCIPALE ─────────────────────────────────────────── */
+.body-grid {
+  display: grid;
+  grid-template-columns: 1fr 2.2fr;
+}
+
+/* ─── COLONNE GAUCHE ────────────────────────────────────────────── */
+.col-left {
+  background: var(--sand);
+  padding: 2.4rem 1.8rem;
+  border-right: 1px solid var(--wheat);
+  display: flex;
+  flex-direction: column;
+  gap: 2.2rem;
+}
+
+/* ─── COLONNE DROITE ────────────────────────────────────────────── */
+.col-right {
+  background: var(--parch);
+  padding: 2.4rem 2.6rem;
+  display: flex;
+  flex-direction: column;
+  gap: 2.4rem;
+}
+
+/* ─── SECTION GÉNÉRIQUE ─────────────────────────────────────────── */
+.section {
+  display: flex;
+  flex-direction: column;
+}
+
+/* ─── LABEL DE SECTION ──────────────────────────────────────────── */
+.section-label {
+  font-family: var(--font-body);
+  font-size: .62rem;
+  font-weight: 500;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+  color: var(--bark);
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  margin-bottom: 1rem;
+}
+
+.section-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: var(--wheat);
+}
+
+/* ─── BARRES DE COMPÉTENCE / LANGUES ────────────────────────────── */
+.skill-item {
+  margin-bottom: .85rem;
+}
+
+.skill-name {
+  font-size: .78rem;
+  font-weight: 500;
+  color: var(--earth);
+  margin-bottom: .25rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.skill-name small {
+  font-weight: 300;
+  font-style: italic;
+  font-size: .72rem;
+  color: var(--bark);
+}
+
+.skill-bar {
+  height: 3px;
+  background: var(--wheat);
+  border-radius: 2px;
+  overflow: hidden;
+}
+
+.skill-bar-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--olive), var(--bark));
+  border-radius: 2px;
+}
+
+/* ─── FORMATION ─────────────────────────────────────────────────── */
+.edu-item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: .6rem 1.2rem;
+  align-items: start;
+}
+
+.edu-year {
+  font-size: .7rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  color: var(--rust);
+  padding-top: .1rem;
+  white-space: nowrap;
+}
+
+.edu-title {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 500;
+  color: var(--earth);
+  line-height: 1.25;
+}
+
+.edu-sub {
+  font-size: .74rem;
+  color: var(--bark);
+  margin-top: .15rem;
+}
+
+/* ─── JUDO ──────────────────────────────────────────────────────── */
+.judo-text {
+  font-size: .75rem;
+  color: var(--bark);
+  line-height: 1.6;
+  margin-bottom: .7rem;
+}
+
+.judo-text strong {
+  color: var(--earth);
+}
+
+.judo-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  padding: .5rem 1rem .5rem .7rem;
+  background: var(--wheat);
+  border-left: 3px solid var(--bark);
+  font-size: .75rem;
+  color: var(--earth);
+}
+
+.belt {
+  width: 32px;
+  height: 10px;
+  background: #6b3c28;
+  border-radius: 2px;
+  box-shadow: inset 0 1px 2px rgba(0, 0, 0, .3);
+}
+
+/* ─── TAGS INTÉRÊTS ─────────────────────────────────────────────── */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .45rem;
+}
+
+.tag {
+  font-size: .68rem;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  padding: .3rem .75rem;
+  border: 1px solid var(--clay);
+  color: var(--bark);
+  background: transparent;
+}
+
+/* ─── PROFIL ────────────────────────────────────────────────────── */
+.profile-text {
+  font-family: var(--font-display);
+  font-size: 1.07rem;
+  font-weight: 300;
+  font-style: italic;
+  color: var(--earth);
+  line-height: 1.75;
+}
+
+.profile-text strong {
+  font-weight: 500;
+}
+
+/* ─── EXPÉRIENCES ───────────────────────────────────────────────── */
+.exp-item {
+  position: relative;
+  padding-left: 1.2rem;
+  border-left: 2px solid var(--wheat);
+  padding-bottom: 1.6rem;
+}
+
+.exp-item:last-child {
+  padding-bottom: 0;
+}
+
+.exp-item::before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 4px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--bark);
+  border: 2px solid var(--parch);
+}
+
+.exp-date {
+  font-size: .65rem;
+  font-weight: 500;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--rust);
+  margin-bottom: .25rem;
+}
+
+.exp-title {
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: var(--earth);
+  line-height: 1.2;
+}
+
+.exp-company {
+  font-size: .75rem;
+  font-weight: 400;
+  color: var(--bark);
+  margin-top: .15rem;
+  letter-spacing: .06em;
+}
+
+.exp-desc {
+  font-size: .78rem;
+  color: var(--bark);
+  line-height: 1.65;
+  margin-top: .5rem;
+}
+
+/* ─── COMPÉTENCES NUMÉRIQUES ────────────────────────────────────── */
+.numeric-text {
+  font-size: .78rem;
+  color: var(--bark);
+  line-height: 1.7;
+}
+
+.numeric-text strong {
+  color: var(--earth);
+}
+
+/* ─── PIED DE PAGE ──────────────────────────────────────────────── */
+.footer-deco {
+  background: var(--earth);
+  padding: 1rem 3.2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-deco small {
+  font-size: .62rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--clay);
+}
+
+.footer-olive {
+  opacity: .5;
+}
+
+/* ─── RESPONSIVE ────────────────────────────────────────────────── */
+@media (max-width: 640px) {
+  .body-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .col-left {
+    border-right: none;
+    border-bottom: 1px solid var(--wheat);
+  }
+
+  .header-name {
+    font-size: 2.4rem;
+  }
+
+  .header {
+    padding: 2rem 1.8rem 1.6rem;
+  }
+
+  .col-left,
+  .col-right {
+    padding: 2rem 1.6rem;
+  }
+}
+
+/* ─── IMPRESSION ────────────────────────────────────────────────── */
+@media print {
+  body {
+    background: white;
+    padding: 0;
+  }
+
+  body::before {
+    display: none;
+  }
+
+  .page {
+    box-shadow: none;
+    border: none;
+    max-width: 100%;
+  }
+}
