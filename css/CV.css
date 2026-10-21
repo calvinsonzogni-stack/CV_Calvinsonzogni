@@ -9,12 +9,12 @@
   --sand:   #e8dfc9;   /* sable sec           */
   --wheat:  #d4c5a0;   /* blé mûr             */
   --clay:   #b8a882;   /* argile              */
-  --bark:   #7d6b52;   /* écorce              */
+  --bark:   #6f5f48;   /* écorce — assombri pour un contraste AA sur le sable */
   --earth:  #4a3d2a;   /* terre foncée        */
   --ink:    #2c2318;   /* encre sépia         */
   --olive:  #8b8c5a;   /* olive               */
   --sage:   #a4a87a;   /* sauge               */
-  --rust:   #a0614a;   /* rouille terracotta  */
+  --rust:   #8a513d;   /* rouille terracotta — idem */
 
   --font-display: 'Cormorant Garamond', Georgia, serif;
   --font-body:    'Jost', sans-serif;
@@ -461,20 +461,87 @@ body::before {
   }
 }
 
-/* ─── IMPRESSION ────────────────────────────────────────────────── */
+/* ─── IMPRESSION / EXPORT PDF ───────────────────────────────────── */
+@page {
+  size: A4;
+  margin: 0;
+}
+
 @media print {
+  /* Sans ça, le navigateur supprime les fonds : en-tête et colonne gauche
+     sortiraient blancs, avec un texte clair illisible. */
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
   body {
     background: white;
     padding: 0;
+    display: block;
   }
 
   body::before {
     display: none;
   }
 
+  /* Une page A4 pleine : les colonnes descendent jusqu'au pied de page */
   .page {
     box-shadow: none;
     border: none;
     max-width: 100%;
+    min-height: 297mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .body-grid {
+    flex: 1;
+  }
+
+  /* Espacements resserrés pour que tout tienne sur une seule page */
+  .header {
+    padding: 2rem 3.2rem 1.5rem;
+  }
+
+  .deco-strip {
+    padding: .35rem 0;
+  }
+
+  .col-left,
+  .col-right {
+    padding-top: 1.8rem;
+    padding-bottom: 1.8rem;
+    gap: 1.5rem;
+  }
+
+  .profile-text {
+    line-height: 1.6;
+  }
+
+  .exp-item {
+    padding-bottom: 1.2rem;
+  }
+
+  .exp-desc,
+  .numeric-text {
+    line-height: 1.55;
+  }
+
+  /* Le CV tient sur une page : on garde les deux colonnes même si la
+     largeur imprimable passe sous le point de rupture mobile. */
+  .body-grid {
+    grid-template-columns: 1fr 2.2fr;
+  }
+
+  .exp-item,
+  .skill-item,
+  .edu-item,
+  .judo-badge {
+    break-inside: avoid;
+  }
+
+  .header-contacts a {
+    color: var(--sand);
   }
 }
